@@ -1,22 +1,29 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
+import axios from 'axios'
+
 import HomePage from './components/HomePage';
 import UserProfile from './components/UserProfile';
 
 class App extends Component {
   state = {
-      currentUser: {
-        userName: 'bob_loblaw',
-        firstName: 'bel',
-        lastName: 'cortes'
-      }
+    users: {}
+  }
+
+  async componentDidMount() {
+    try {
+      const response = await axios.get('/users/users')
+      this.setState({ users: response.data })
+    } catch (error) {
+        console.log('Error retrieving users!')
+        console.log(error)
     }
+  }
 
   render() {
-    
-
+    {console.log(this.state.users)}
     const UserProfileComponent = () => (
-        <UserProfile userName={this.state.currentUser.userName} firstName={this.state.currentUser.firstName}  />
+        <UserProfile userName={this.state.users.userName} firstName={this.state.users.firstName}  />
     );
 
     return (

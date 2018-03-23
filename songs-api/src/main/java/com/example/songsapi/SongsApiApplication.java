@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class SongsApiApplication {
 
-//	@RequestMapping("/")
-//	public String home() {
-//		return "some songs";
-//	}
+	@RequestMapping("/")
+	public String home() {
+		return "songs";
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(SongsApiApplication.class, args);

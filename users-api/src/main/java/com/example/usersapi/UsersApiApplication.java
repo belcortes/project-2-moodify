@@ -11,10 +11,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class UsersApiApplication {
 
-//	@RequestMapping("/")
-//	public String home() {
-//		return "some users";
-//	}
+	@RequestMapping("/")
+	public String home() {
+		return "some users";
+	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(UsersApiApplication.class, args);
