@@ -2,12 +2,6 @@
   "name": "moodify-react",
   "version": "0.1.0",
   "private": true,
-  "proxy": {
-    "/api": {
-      "target": "https://localhost:8080",
-      "secure": false
-    }
-  },
   "dependencies": {
     "axios": "^0.18.0",
     "react": "^16.2.0",
@@ -16,9 +10,10 @@
     "react-scripts": "1.1.1"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "start": "PORT=4000 react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
-  }
+  },
+  "proxy": "http://localhost:8080"
 }

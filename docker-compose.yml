@@ -21,6 +21,7 @@ services:
       - ./api-gateway:/app
     depends_on:
       - eureka
+      - postgresdev
     command: './gradlew bootRun'
     environment:
       - GRADLE_USER_HOME=cache
@@ -34,7 +35,6 @@ services:
       - ./users-api:/app
     depends_on:
       - eureka
-      - postgresdev
     command: './gradlew bootRun'
     environment:
       - GRADLE_USER_HOME=cache
@@ -63,8 +63,10 @@ services:
   react:
     image: node
     ports:
-     - "3000:3000"
+     - "4000:4000"
     working_dir: /app
     volumes:
      - ./moodify-react:/app
     command: 'npm start'
+    depends_on:
+      - api-gateway
