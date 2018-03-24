@@ -33,7 +33,8 @@ services:
     volumes:
       - ./users-api:/app
     depends_on:
-      - eureka 
+      - eureka
+      - postgresdev
     command: './gradlew bootRun'
     environment:
       - GRADLE_USER_HOME=cache
