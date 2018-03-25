@@ -1,9 +1,6 @@
 import React, {Component} from 'react'
 
 class Song extends Component {
-  // state = {
-  //   newSong: {}
-  // }
 
   render() {
     const title = this.props.title

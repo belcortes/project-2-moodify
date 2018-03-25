@@ -28,13 +28,11 @@ class App extends Component {
       valence: ''
   }
 
-  
-
   addNewSongToSongList = (newSong) => {
     const songs = [...this.state.songs]
     songs.push(newSong)
     this.setState({songs})
-    this.setState({searchedSongs: []})
+    this.getSongsValence()
   }
 
   searchForSong = (searchedSong) => {
