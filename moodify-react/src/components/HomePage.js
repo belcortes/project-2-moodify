@@ -9,6 +9,7 @@ class HomePage extends Component {
     return (
       <div>
         <h1>Moodify</h1>
+        <p>Positiveness: {this.props.valence}%</p>
         <Search 
           searchForSong={this.props.searchForSong} 
           searchSpotifyTrack={this.props.searchSpotifyTrack}

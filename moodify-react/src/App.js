@@ -16,10 +16,12 @@ class App extends Component {
       },
       songs: [{
         title: 'Song',
-        artist: 'Test'
+        artist: 'Test',
+        spotifyId:'75wtrabFOVsYLsUgZLCLtp'
       }, {
         title: 'Song2',
-        artist: 'Test'
+        artist: 'Test',
+        spotifyId: '1ENGe5j5pdmz1YKiW6NhK9'
       }],
       songQuery: '',
       searchedSongs: [],
@@ -32,18 +34,18 @@ class App extends Component {
     const songs = [...this.state.songs]
     songs.push(newSong)
     this.setState({songs})
+    this.setState({searchedSongs: []})
   }
 
   searchForSong = (searchedSong) => {
-
     this.setState({songQuery: searchedSong})
   }
 
   searchSpotifyTrack = () => {
     let searchedSong = {}
     const searchedSongs = []
-    let currentComponent = this
-    spotifyApi.setAccessToken('BQCDvBqLZDxnTIDF9lOeSIsR3V6QjqgZu6hKqoJ4JL6kTl70gd-sQlHKxrcn9rxOcL-25y-QFH_dpHTOjDRU5PPws7iL2I57gGtvkGunvOcE7KKBh_p_DnYxpZFuKcmPGiUJAAla9nGIc0xsdA');
+    const currentComponent = this
+    
     spotifyApi.searchTracks(this.state.songQuery, function(err, data) {
       if (err) {
         console.error(err)
@@ -52,7 +54,7 @@ class App extends Component {
           searchedSong = {
             title: song.name,
             artist: song.artists[0].name,
-            spotifyId: song.id
+            spotifyId: song.id,
           }
 
           searchedSongs.push(searchedSong)
@@ -63,35 +65,40 @@ class App extends Component {
     })
   }
 
-  componentDidMount = () => {
-    // console.log(this.state.searchedSongs)
-    // this.searchSpotifyTrack()
-    // console.log(this.state.songQuery)
-    // const searchedSong = this.getSpotifyTrack
-    // 
-    // const searchedSongs= this.state.searchedSongs
-    
-    //   searchedSongs.push(searchedSong)
-    //   this.setState({searchedSongs})
-    //   console.log('-----')
-    //   console.log(searchedSong)
-    
-    // spotifyApi.getAudioFeaturesForTracks(['75wtrabFOVsYLsUgZLCLtp', '1ENGe5j5pdmz1YKiW6NhK9'], function(err, data) {
-    //   if (err) {
-    //     console.error(err)
-    //   } else {
-    //     console.log(data.audio_features)
-    //     console.log('Track valence', data.audio_features[0].valence)
-    //   }
-    // });
-    // console.log(this.state.valence)
-    // try {
-    //   const response = await axios.get('/users/users')
-    //   this.setState({ users: response.data })
-    // } catch (error) {
-    //     console.log('Error retrieving users!')
-    //     console.log(error)
-    // }
+  getSongsValence = () => {
+    const currentComponent = this
+
+    const songs = currentComponent.state.songs
+    const songIds = []
+    songs.forEach((song)=> {
+      songIds.push(song.spotifyId)
+    })
+
+    let valenceArray = []
+    spotifyApi.getAudioFeaturesForTracks(songIds, function(err, data) {
+      if (err) {
+        console.error(err)
+      } else {
+        data.audio_features.forEach((features) => {
+          valenceArray.push(features.valence)
+        });
+      }
+      let total = 0
+      valenceArray.forEach((valence) => {
+        total+=valence
+      })
+      const avg = total / valenceArray.length
+      currentComponent.setState({valence: Math.round(avg*100)})
+    })
+  }
+
+  average = (array) => {
+    array.reduce( ( p, c ) => p + c, 0 ) / array.length
+  }
+
+  componentDidMount() {
+    spotifyApi.setAccessToken('BQC4r9YFAm9g7Q0NCDxZtHjeUNS_8pNMnQJ3OA9tAG3fERs7MIenylBiwYmSUDrKi1uB00rFcZ1OgerX7AS6YtwNxQG_NClVjoi9qmcEX6UxK2leVPdSIk7jMEtMeC2bH88I1gXQVrjXIi49nA');
+    this.getSongsValence()
   }
 
   render() {
@@ -101,6 +108,7 @@ class App extends Component {
 
     const HomePageComponent = () => (
         <HomePage 
+          valence={this.state.valence}
           songs={this.state.songs}
           searchForSong={this.searchForSong}
           searchedSongs={this.state.searchedSongs}

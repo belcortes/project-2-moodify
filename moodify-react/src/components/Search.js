@@ -11,16 +11,6 @@ class Search extends Component {
     this.setState({songQuery: attributeValue})
   }
 
-  // handleNewSongChange = (e) => {
-  //   const attributeName = e.target.name;
-  //   const attributeValue = e.target.value;
-
-  //   const searchedSong = {...this.state.searchedSong};
-  //   searchedSong[attributeName] = attributeValue;
-
-  //   this.setState({searchedSong})
-  // }
-
   handleSubmit = (e) => {
     e.preventDefault()
     

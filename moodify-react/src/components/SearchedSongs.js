@@ -11,7 +11,8 @@ class SearchedSongs extends Component {
           spotifyId={song.spotifyId}
           index={index}
           key={index}
-          resultList={true}/>
+          resultList={true}
+          addNewSongToSongList={this.props.addNewSongToSongList}/>
 
     });
 
