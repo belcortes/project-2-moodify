@@ -2,15 +2,17 @@ import React, {Component} from 'react';
 
 import Song from './Song';
 
-class SongList extends Component {
+class SearchedSongs extends Component {
   render() {
-    const SongComponents = this.props.songs.map((song, index) => {
+    const SongComponents = this.props.searchedSongs.map((song, index) => {
       return <Song
           title={song.title}
           artist={song.artist}
+          spotifyId={song.spotifyId}
           index={index}
           key={index}
-          resultList={false}/>;
+          resultList={true}/>
+
     });
 
     return (
@@ -22,4 +24,4 @@ class SongList extends Component {
   }
 }
 
-export default SongList;
+export default SearchedSongs;

@@ -1,15 +1,25 @@
 import React, { Component } from 'react';
 
 import SongList from './SongList'
-import SongForm from './SongForm'
+import SearchedSongs from './SearchedSongs'
+import Search from './Search'
     
 class HomePage extends Component {
   render() {
-    console.log(this.props.songs)
     return (
       <div>
         <h1>Moodify</h1>
-        <SongForm addNewSongToSongList={this.props.addNewSongToSongList} />
+        <Search 
+          searchForSong={this.props.searchForSong} 
+          searchSpotifyTrack={this.props.searchSpotifyTrack}
+           />
+        { 
+          this.props.searchedSongs ? 
+          <SearchedSongs 
+            searchedSongs={this.props.searchedSongs} 
+            addNewSongToSongList={this.props.addNewSongToSongList} /> 
+          : undefined
+        }
         <SongList songs={this.props.songs} />
       </div>
     );
