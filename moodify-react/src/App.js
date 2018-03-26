@@ -99,6 +99,15 @@ class App extends Component {
   }
 
   componentDidMount() {
+    axios.get('/users/users')
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+            console.log('Error retrieving ideas!')
+            console.log(error)
+        })
+
     spotifyApi.setAccessToken('BQBqRfGCKUWGxFU9G9JxzjnU_p64MRZzp8ainANkrrP98ok24SGCtBlQb0GxY91YOIz_HaTXbPYtaPQ_YFsfT4adOFOB0pik1F8_KB1E-wR6heL4i0FVIy8N7UN8C4ymnY6Q60Imn2l7DBZJSg');
 
     this.getSongsValence()
