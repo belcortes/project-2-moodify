@@ -40,9 +40,11 @@ class HomePage extends Component {
         
 
         <div style={songListDiv}>
-          <SongList songs={this.props.songs} />
+          <SongList 
+            songs={this.props.songs} 
+            deleteSong={this.props.deleteSong} />
           { 
-            this.props.searchedSongs.length != 0 ? 
+            this.props.searchedSongs.length !== 0 ? 
             <div style={alignRight}>
               <SearchedSongs 
               searchedSongs={this.props.searchedSongs} 

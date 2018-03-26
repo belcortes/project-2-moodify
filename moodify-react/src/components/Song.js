@@ -19,7 +19,11 @@ class Song extends Component {
             onClick={() => this.props.addNewSongToSongList(newSong)}>
             Add to list
           </button>
-          : null
+          : 
+          <button
+            onClick={() => this.props.deleteSong(this.props.index)}>
+            Delete
+          </button>
         }
       </div>
     );

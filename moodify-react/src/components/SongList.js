@@ -9,6 +9,7 @@ class SongList extends Component {
           title={song.title}
           artist={song.artist}
           index={index}
+          deleteSong={this.props.deleteSong}
           key={index}
           resultList={false}/>;
     });

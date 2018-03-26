@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
-import axios from 'axios'
+// import axios from 'axios'
 
 import HomePage from './components/HomePage';
 import UserProfile from './components/UserProfile';
@@ -37,6 +37,13 @@ class App extends Component {
 
   searchForSong = (searchedSong) => {
     this.setState({songQuery: searchedSong})
+  }
+
+  deleteSong = (index) => {
+    const updatedSongList = [...this.state.songs]
+    updatedSongList.splice(index, 1)
+    this.setState({songs: updatedSongList})
+    this.getSongsValence()
   }
 
   // Finding a track using spotify API
@@ -99,16 +106,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('/users/users')
-        .then((response) => {
-          console.log(response)
-        })
-        .catch((error) => {
-            console.log('Error retrieving ideas!')
-            console.log(error)
-        })
+    // axios.get('/users/users')
+    //     .then((response) => {
+    //       console.log(response)
+    //     })
+    //     .catch((error) => {
+    //         console.log('Error retrieving ideas!')
+    //         console.log(error)
+    //     })
 
-    spotifyApi.setAccessToken('BQBqRfGCKUWGxFU9G9JxzjnU_p64MRZzp8ainANkrrP98ok24SGCtBlQb0GxY91YOIz_HaTXbPYtaPQ_YFsfT4adOFOB0pik1F8_KB1E-wR6heL4i0FVIy8N7UN8C4ymnY6Q60Imn2l7DBZJSg');
+    spotifyApi.setAccessToken('BQD7FzE1vKQdo7MSVX0EVyPkMnwQ0IwZaBC3aIXah2qQh5RYjY_GaKcTMCHg5ekTz13WnNNQiXShUsZXqz7dKhMGy7qArs86UXmO8WEnYEglIozW0DbGFyj6P7mQd9QugJ9hGEvsOYTEejXiPg');
 
     this.getSongsValence()
   }
@@ -127,7 +134,8 @@ class App extends Component {
           searchForSong={this.searchForSong}
           searchedSongs={this.state.searchedSongs}
           searchSpotifyTrack={ this.state.songQuery ? this.searchSpotifyTrack() : undefined }
-          addNewSongToSongList={this.addNewSongToSongList}  />
+          addNewSongToSongList={this.addNewSongToSongList}
+          deleteSong={this.deleteSong}  />
     )
 
     return (
