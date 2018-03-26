@@ -23,7 +23,7 @@ class Search extends Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <div><input name="search" type="text" placeholder="Search for track" onChange={this.addQueryToSongQuery}/></div>
-          <div><input type="submit" value="Search Song"/></div>
+          <div><input type="submit" value="Search"/></div>
         </form>
       </div>
     );
