@@ -19,4 +19,7 @@ public class Song {
 
     @Column(name = "ARTIST")
     private String artist;
+
+    @Column(name = "SPOTIFYID")
+    private Long spotifyId;
 }

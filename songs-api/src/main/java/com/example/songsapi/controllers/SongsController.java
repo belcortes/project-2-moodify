@@ -41,6 +41,7 @@ public class SongsController {
 
         songFromDB.setArtist(songRequest.getArtist());
         songFromDB.setTitle(songRequest.getTitle());
+        songFromDB.setSpotifyId(songRequest.getSpotifyId());
 
         return songRepository.save(songFromDB);
     }
