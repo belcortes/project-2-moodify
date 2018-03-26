@@ -67,3 +67,5 @@ services:
     volumes:
      - ./moodify-react:/app
     command: 'npm start'
+    depends_on:
+      - api-gateway

@@ -108,7 +108,7 @@ class App extends Component {
   componentDidMount() {
     axios.get('/users/users')
         .then((response) => {
-          console.log(response)
+          console.log(response.data)
         })
         .catch((error) => {
             console.log('Error retrieving ideas!')
