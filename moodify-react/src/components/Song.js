@@ -1,33 +1,31 @@
-import React, {Component} from 'react'
+import React from 'react'
 
-class Song extends Component {
+const Song = (props) => {
 
-  render() {
-    const title = this.props.title
-    const artist = this.props.artist
-    const spotifyId = this.props.spotifyId
-    const newSong = { title, artist, spotifyId }
+  const title = props.title
+  const artist = props.artist
+  const spotifyId = props.spotifyId
+  const newSong = { title, artist, spotifyId }
 
 
-    return (
-      <div>
-        <h3>{title}</h3>
-        <div>{artist}</div>
-        {
-          this.props.resultList ?
-          <button
-            onClick={() => this.props.addNewSongToSongList(newSong)}>
-            Add to list
-          </button>
-          : 
-          <button
-            onClick={() => this.props.deleteSong(this.props.index)}>
-            Delete
-          </button>
-        }
-      </div>
-    );
-  }
+  return (
+    <div>
+      <h3>{title}</h3>
+      <div>{artist}</div>
+      {
+        props.resultList ?
+        <button
+          onClick={() => props.addNewSongToSongList(newSong)}>
+          Add to list
+        </button>
+        : 
+        <button
+          onClick={() => props.deleteSong(props.index)}>
+          Delete
+        </button>
+      }
+    </div>
+  )
 }
 
 export default Song;
