@@ -16,12 +16,5 @@
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject"
   },
-  "proxy": {
-    "/users": {
-      "target": "http://localhost:8081"
-    },
-    "/songs": {
-      "target": "http://localhost:8082"
-    }
-  }
+  "proxy": "http://api-gateway:8080"
 }

@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import {BrowserRouter as Router, Switch, Route} from 'react-router-dom';
 import SpotifyWebApi from 'spotify-web-api-js'
-// import axios from 'axios'
+import axios from 'axios'
 
 import HomePage from './components/HomePage';
 import UserProfile from './components/UserProfile';
@@ -106,16 +106,16 @@ class App extends Component {
   }
 
   componentDidMount() {
-    // axios.get('/users/users')
-    //     .then((response) => {
-    //       console.log(response)
-    //     })
-    //     .catch((error) => {
-    //         console.log('Error retrieving ideas!')
-    //         console.log(error)
-    //     })
+    axios.get('/users/users')
+        .then((response) => {
+          console.log(response)
+        })
+        .catch((error) => {
+            console.log('Error retrieving ideas!')
+            console.log(error)
+        })
 
-    spotifyApi.setAccessToken('BQD7FzE1vKQdo7MSVX0EVyPkMnwQ0IwZaBC3aIXah2qQh5RYjY_GaKcTMCHg5ekTz13WnNNQiXShUsZXqz7dKhMGy7qArs86UXmO8WEnYEglIozW0DbGFyj6P7mQd9QugJ9hGEvsOYTEejXiPg');
+    spotifyApi.setAccessToken('BQA05ALKWtsDQ0qTei3yPAkQHagnBhB9QVTIwRCvS0wHyBB6M6MaXO0Jkl9PgwxvCsYebW2BqjFar7PaEM5m9WwENjtPNbz-PVpsDaeW06qQUGE_poXThx3SeN3Z0z_6g4HOSLy8TVpBfRMSdw');
 
     this.getSongsValence()
   }

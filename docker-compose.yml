@@ -21,7 +21,6 @@ services:
       - ./api-gateway:/app
     depends_on:
       - eureka
-      - postgresdev
     command: './gradlew bootRun'
     environment:
       - GRADLE_USER_HOME=cache
@@ -68,5 +67,3 @@ services:
     volumes:
      - ./moodify-react:/app
     command: 'npm start'
-    depends_on:
-      - api-gateway
